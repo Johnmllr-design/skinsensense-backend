@@ -1,5 +1,5 @@
 import torch.nn as nn
-import torchvision
+import os
 from torch import Tensor
 import torch.nn.functional as F
 from PIL import Image
@@ -9,17 +9,22 @@ from torchvision import transforms
 from model import skin_cnn
 from load_data import load_dataset
 from torch.optim import Adam
+import torch
 
 def train():
+
+    # hyperparameters
     epochs = 100
     model = skin_cnn()
     loss_function = nn.BCEWithLogitsLoss()
     optimizer = Adam(model.parameters(), lr=0.0001)
 
-    inputs, ground_truth = load_dataset()
+   # training loop
     for epoch in range(0, epochs):
         correct = 0
-        for i in range(0, 10):
+        inputs, ground_truth = load_dataset()
+        num_obs = len(inputs)
+        for i in range(0, num_obs):
             # get the input and label
             input_image = Image.open(inputs[i])
             label_tensor = Tensor([[ground_truth[i]]])
@@ -29,7 +34,6 @@ def train():
 
             # forward pass
             output = model(input_image)
-            print("the output is " + str(output[0][0]) +" and the label was " + str(ground_truth[i]))
             if output[0][0] > 0.5 and ground_truth[i] == 1 or output[0][0] < 0.5 and ground_truth[i] == 0:
                 correct += 1
 
@@ -39,7 +43,10 @@ def train():
             # backpropagate
             loss.backward()
             optimizer.step()
-        print("accuracy of epoch " + str(epoch) +" was " + str(correct / 10))
+
+        # save the models
+        model_path = os.path.join("saved_models", f"skin_model_epoch_{epoch}.pth")
+        torch.save(model.state_dict(), model_path)
     
 
 

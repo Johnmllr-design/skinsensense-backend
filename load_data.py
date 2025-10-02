@@ -38,4 +38,3 @@ def load_dataset():
     return [data, ground_truth]
 
 
-load_dataset()
