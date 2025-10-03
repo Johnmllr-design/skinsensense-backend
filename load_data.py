@@ -18,6 +18,7 @@ def load_dataset():
         benign_filenames = benign_filenames[::-1]
         malignant_filenames = malignant_filenames[::-1]
 
+    # load in filenames into the data/ground truth array
     bPath = "/Users/johnmiller/Desktop/skin_dataset_resized/train_set/benign/"
     mPath = "/Users/johnmiller/Desktop/skin_dataset_resized/train_set/malignant/"
     bInd = 0
@@ -34,7 +35,8 @@ def load_dataset():
             data.append(mPath + malignant_filenames[mInd])
             ground_truth.append(1)
             mInd += 1
-        
+    
     return [data, ground_truth]
 
 
+load_dataset()

@@ -43,8 +43,11 @@ def train():
             # backpropagate
             loss.backward()
             optimizer.step()
-
+            print(f"\rEpoch {epoch+1}/{epochs} - Progress: {i/num_obs:.2%} - Loss: {loss.item():.4f}", end="", flush=True)            
         # save the models
+        print()
+        print("accuracy of epoch " + str(epoch) +" was " + str(correct / num_obs))
+        print()
         model_path = os.path.join("saved_models", f"skin_model_epoch_{epoch}.pth")
         torch.save(model.state_dict(), model_path)
     
