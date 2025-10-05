@@ -10,6 +10,8 @@ from model import skin_cnn
 import json
 
 app = FastAPI()
+
+# trained model for inference
 model = skin_cnn()
 model.load_state_dict(torch.load("saved_models/skin_model_epoch_7.pth"))
 
@@ -22,21 +24,27 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class UserData(BaseModel):
-    username: str
-    password: str
+# class NewUserData(BaseModel):
+#     username: str
+#     password: str
+#     retyped_password: str
 
-class UserImage(BaseModel):
-    image_string: str
 
-# Add a root endpoint that accepts GET and POST
+# class UserData(BaseModel):
+#     username: str
+#     password: str
+
+# class UserImage(BaseModel):
+#     image_string: str
+
+# Add a root endpoint that accepts all different structures of JSON
+# one key : sending an image
+# two keys : logging into a profile
+# three keys : making a new profile
 @app.post("/")
 async def root_post(request: Request):
     body = await request.json()
-    if len(body.keys()) == 2:
-        return {"result" : True}
-    else:
-        print("loading the provided image")
+    if len(body.keys()) == 1: 
         img = body["image"]
         image_bytes = base64.b64decode(img)     # string -> bytefile
         image_file = Image.open(io.BytesIO(image_bytes)) # bytefile -> imagefile -> open the image
@@ -48,9 +56,36 @@ async def root_post(request: Request):
 
         # return a JSON object to the user
         if result[0][0] > 0.5:
-            return {"result" : "Cancerous"}
+            return {"result" : True}
         else:
-            return  {"result" : "Benign"}
+            return  {"result" : False}
+    
+    elif len(body.keys()) == 2:
+        return {"result" : True}
+        return login(body)
+    else:
+        return {"result" : True}
+        return new_user(body)
+        
+    
+
+
+# login queries the database to determine whether or not the 
+# provided input matches with a existing profile
+async def login(body: dict):
+    pass
+    # if body["username"] IN database:
+    # if database[body["username"]] == body["password"]: return {"result" : True} else return {"result" : False}
+
+# new_user queries the database to determine whether or not the 
+# provided input matches with a existing profile
+async def new_user(body: dict):
+    pass
+    # if body["password"] != body["repeat_password"]:
+    #    return {"result" : False)
+    # database[body["username"]] = body["password"]
+    #    return {"result" : True)
+
 
     
 

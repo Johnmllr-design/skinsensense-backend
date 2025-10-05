@@ -8,22 +8,25 @@ import torchvision
 from torchvision import transforms
 from model import skin_cnn
 from load_data import load_dataset
+from load_data import load_testset
 from torch.optim import Adam
 import torch
 
-def test():
+def test(num_obs: int):
     # hyperparameters
     model = skin_cnn()
-    model.load_state_dict(torch.load("saved_models/skin_model_epoch_7.pth"))
-    inputs, ground_truth = load_dataset()
-    inputs = inputs[0:100]
-    ground_truth = ground_truth[0:100]
-    num_obs = len(inputs)
+    model.load_state_dict(torch.load("saved_models_2/skin_model_epoch_9.pth"))
+    inputs, ground_truth = load_testset()
+    print(len(inputs))
+    inputs = inputs[0:num_obs]
+    ground_truth = ground_truth[0:num_obs]
     correct = 0
+    false_negatives = 0
+    false_positives = 0
 
     for i in range(0, num_obs):
         # print test progress
-        print(str(i / num_obs) + " of the way done")
+        print(f"\rProgress: " + str(i/ num_obs ), end="", flush=True)            
         # get the input and label
         input_image = Image.open(inputs[i])
 
@@ -32,11 +35,26 @@ def test():
 
         if output[0][0] > 0.5 and ground_truth[i] == 1 or output[0][0] < 0.5 and ground_truth[i] == 0:
             correct += 1
-    
-    print("accuracy is " + str(correct / 100))
-    
+        if output[0][0] < 0.5 and ground_truth[i] == 1:
+            false_negatives += 1
+        if output[0][0] > 0.5 and ground_truth[i] == 0:
+            false_positives += 1
+
+    print()
+    print("accuracy was " + str(correct / num_obs))
+    print()
+    print("there were  " + str(false_negatives / num_obs) + " percent false negatives")
+    print("there were " + str(false_positives / num_obs) + " percent false positives")
+    print()
+    return correct / num_obs
 
 
-            
+
+# model verification and validation via a test loop 
+# that takes an average over 10 trials of the test set            
         
-test()
+if __name__ == "__main__":
+    model_accuracies = []
+    for i in range(0, 10):
+        model_accuracies.append(test(100))
+    print("the average accuracy across 10 test epochs is " + str(sum(model_accuracies) / len(model_accuracies)))
