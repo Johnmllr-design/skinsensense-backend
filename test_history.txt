@@ -1,0 +1,327 @@
+TESTING MODEL "saved_models_2/skin_model_epoch_9.pth"
+
+
+(.venv) johnmiller@MacBookPro skinsense_backend % /Users/johnmiller/Desktop/skinsense_backend/.venv/bin/python /Users/johnmiller/Desktop/skinsense_backend/test.py
+1047
+Progress: 0.99accurary was 0.73
+1055
+Progress: 0.99accurary was 0.75
+955
+Progress: 0.99accurary was 0.75
+1010
+Progress: 0.99accurary was 0.78
+984
+Progress: 0.99accurary was 0.77
+965
+Progress: 0.99accurary was 0.76
+969
+Progress: 0.99accurary was 0.77
+970
+Progress: 0.99accurary was 0.74
+995
+Progress: 0.99accurary was 0.81
+976
+Progress: 0.99accurary was 0.75
+the average accuracy across 10 test epochs is 0.761
+
+
+--------------------------------------------------------------------------------
+
+.venv johnmiller@MacBookPro skinsense_backend % /Users/johnmiller/Desktop/skinsense_backend/.venv/bin/python /Users/johnmiller/Desktop/skinsense_backend/test.py
+997
+Progress: 0.99
+accuracy was 0.71
+
+there were  0.26 percent false negatives
+there were 0.03 percent false positives
+
+1004
+Progress: 0.99
+accuracy was 0.72
+
+there were  0.25 percent false negatives
+there were 0.03 percent false positives
+
+991
+Progress: 0.99
+accuracy was 0.81
+
+there were  0.16 percent false negatives
+there were 0.03 percent false positives
+
+1012
+Progress: 0.99
+accuracy was 0.75
+
+there were  0.22 percent false negatives
+there were 0.03 percent false positives
+
+1001
+Progress: 0.99
+accuracy was 0.79
+
+there were  0.18 percent false negatives
+there were 0.03 percent false positives
+
+983
+Progress: 0.99
+accuracy was 0.79
+
+there were  0.18 percent false negatives
+there were 0.03 percent false positives
+
+1001
+Progress: 0.99
+accuracy was 0.73
+
+there were  0.24 percent false negatives
+there were 0.03 percent false positives
+
+991
+Progress: 0.99
+accuracy was 0.72
+
+there were  0.25 percent false negatives
+there were 0.03 percent false positives
+
+1029
+Progress: 0.99
+accuracy was 0.74
+
+there were  0.23 percent false negatives
+there were 0.03 percent false positives
+
+949
+Progress: 0.99
+accuracy was 0.8
+
+there were  0.17 percent false negatives
+there were 0.03 percent false positives
+
+the average accuracy across 10 test epochs is 0.756
+
+--------------------------------------------------------------------------------
+
+johnmiller@MacBookPro skinsense_backend % /Users/johnmiller/Desktop/skinsense_backend/.venv/bin/python /Users/johnmiller/Desktop/skinsense_backend/test.py
+976
+Progress: 0.99
+accuracy was 0.73
+
+there were  0.24 percent false negatives
+there were 0.03 percent false positives
+
+1003
+Progress: 0.99
+accuracy was 0.76
+
+there were  0.21 percent false negatives
+there were 0.03 percent false positives
+
+959
+Progress: 0.99
+accuracy was 0.76
+
+there were  0.21 percent false negatives
+there were 0.03 percent false positives
+
+983
+Progress: 0.99
+accuracy was 0.78
+
+there were  0.19 percent false negatives
+there were 0.03 percent false positives
+
+992
+Progress: 0.99
+accuracy was 0.74
+
+there were  0.23 percent false negatives
+there were 0.03 percent false positives
+
+991
+Progress: 0.99
+accuracy was 0.76
+
+there were  0.21 percent false negatives
+there were 0.03 percent false positives
+
+980
+Progress: 0.99
+accuracy was 0.75
+
+there were  0.22 percent false negatives
+there were 0.03 percent false positives
+
+1015
+Progress: 0.99
+accuracy was 0.79
+
+there were  0.18 percent false negatives
+there were 0.03 percent false positives
+
+943
+Progress: 0.99
+accuracy was 0.82
+
+there were  0.15 percent false negatives
+there were 0.03 percent false positives
+
+945
+Progress: 0.99
+accuracy was 0.79
+
+there were  0.18 percent false negatives
+there were 0.03 percent false positives
+
+the average accuracy across 10 test epochs is 0.768
+
+--------------------------------------------------------------------------------
+
+johnmiller@MacBookPro skinsense_backend % /Users/johnmiller/Desktop/skinsense_backend/.venv/bin/python /Users/johnmiller/Desktop/skinsense_backend/test.py
+965
+Progress: 0.99
+accuracy was 0.76
+
+there were  0.21 percent false negatives
+there were 0.03 percent false positives
+
+945
+Progress: 0.99
+accuracy was 0.75
+
+there were  0.22 percent false negatives
+there were 0.03 percent false positives
+
+965
+Progress: 0.99
+accuracy was 0.81
+
+there were  0.16 percent false negatives
+there were 0.03 percent false positives
+
+971
+Progress: 0.99
+accuracy was 0.79
+
+there were  0.18 percent false negatives
+there were 0.03 percent false positives
+
+954
+Progress: 0.99
+accuracy was 0.79
+
+there were  0.18 percent false negatives
+there were 0.03 percent false positives
+
+944
+Progress: 0.99
+accuracy was 0.82
+
+there were  0.15 percent false negatives
+there were 0.03 percent false positives
+
+981
+Progress: 0.99
+accuracy was 0.77
+
+there were  0.2 percent false negatives
+there were 0.03 percent false positives
+
+980
+Progress: 0.99
+accuracy was 0.77
+
+there were  0.2 percent false negatives
+there were 0.03 percent false positives
+
+1008
+Progress: 0.99
+accuracy was 0.77
+
+there were  0.2 percent false negatives
+there were 0.03 percent false positives
+
+962
+Progress: 0.99
+accuracy was 0.72
+
+there were  0.25 percent false negatives
+there were 0.03 percent false positives
+
+the average accuracy across 10 test epochs is 0.775
+
+--------------------------------------------------------------------------------
+
+
+johnmiller@MacBookPro skinsense_backend % /Users/johnmiller/Desktop/skinsense_backend/.venv/bin/python /Users/johnmiller/Desktop/skinsense_backend/test.py
+962
+Progress: 0.99
+accuracy was 0.77
+
+there were  0.2 percent false negatives
+there were 0.03 percent false positives
+
+981
+Progress: 0.99
+accuracy was 0.74
+
+there were  0.23 percent false negatives
+there were 0.03 percent false positives
+
+965
+Progress: 0.99
+accuracy was 0.71
+
+there were  0.26 percent false negatives
+there were 0.03 percent false positives
+
+952
+Progress: 0.99
+accuracy was 0.8
+
+there were  0.17 percent false negatives
+there were 0.03 percent false positives
+
+967
+Progress: 0.99
+accuracy was 0.76
+
+there were  0.21 percent false negatives
+there were 0.03 percent false positives
+
+951
+Progress: 0.99
+accuracy was 0.79
+
+there were  0.18 percent false negatives
+there were 0.03 percent false positives
+
+975
+Progress: 0.99
+accuracy was 0.8
+
+there were  0.17 percent false negatives
+there were 0.03 percent false positives
+
+968
+Progress: 0.99
+accuracy was 0.8
+
+there were  0.17 percent false negatives
+there were 0.03 percent false positives
+
+990
+Progress: 0.99
+accuracy was 0.8
+
+there were  0.17 percent false negatives
+there were 0.03 percent false positives
+
+968
+Progress: 0.99
+accuracy was 0.76
+
+there were  0.21 percent false negatives
+there were 0.03 percent false positives
+
+the average accuracy across 10 test epochs is 0.773
