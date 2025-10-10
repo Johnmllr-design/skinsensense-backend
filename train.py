@@ -15,7 +15,7 @@ def train():
 
     # hyperparameters
     epochs = 100
-    model = skin_cnn()
+    model = torch.nn.LSTMCell(input_size=1, hidden_size=1)
     loss_function = nn.BCEWithLogitsLoss()
     optimizer = Adam(model.parameters(), lr=0.0001)
 
@@ -30,8 +30,8 @@ def train():
         # get the dataset. load_dataset shuffles data automatically such that no
         # two inputs arrays are identical
         inputs, ground_truth = load_dataset()
-        print(f"Starting epoch {epoch+1}/{epochs} with {len(inputs)} samples.")
         epoch_loss = []
+        
         for i in range(0, len(inputs)):
             # get the input and label
             input_image = Image.open(inputs[i])
@@ -42,6 +42,8 @@ def train():
 
             # forward pass
             output = model(input_image)
+
+            # check model output
             if output[0][0] > 0.5 and ground_truth[i] == 1 or output[0][0] < 0.5 and ground_truth[i] == 0:
                 correct += 1
 

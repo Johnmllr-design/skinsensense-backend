@@ -8,7 +8,7 @@ def init_db():
     cursor.execute('''
             CREATE TABLE IF NOT EXISTS users (
                    username TEXT PRIMARY KEY,
-                   password
+                   password TEXT
                    )''')
     
     connection.commit()
@@ -25,11 +25,11 @@ def login(username: str, password:str):
     connection.close()
     return result is not None
 
-def create_user(username:str, password:str, retyped_pw:str):
-    if password != retyped_pw:
+def create_user(username:str, password:str, retyped_password: str):
+    if len(username) <  5 or len(password) < 5 or password != retyped_password:
         return False
-    print("the passwords! match")
     try:
+        print("IN DATABASE CREATIGN USER")
         connection = sqlite3.connect("database.skinsense.db")
         cursor = connection.cursor()
         cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))

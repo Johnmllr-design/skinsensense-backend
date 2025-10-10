@@ -1,7 +1,9 @@
 import torch.nn as nn
 from torchvision import transforms as TF
 from torch import Tensor
+from PIL import Image
 import torch.nn.functional as F
+to_image = TF.ToPILImage()
 
 class skin_cnn(nn.Module):
     def __init__(self):
@@ -29,8 +31,9 @@ class skin_cnn(nn.Module):
 
         # turn the image into a tensor
         tensor:Tensor = self.get_input(input_image_file)
-        tensor = tensor.unsqueeze(0)
 
+        # Unsqueeze for a batch layer
+        tensor = tensor.unsqueeze(0)
 
         # convolve and pool
         first_conv = F.relu(self.initial_conv(tensor))
