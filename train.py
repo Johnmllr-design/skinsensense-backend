@@ -80,7 +80,9 @@ class trainer():
                 self.optimizer.step()
 
 
-            # save the losses array as a text file
+            # save the model as a text file
+            os.mkdir("/Users/johnmiller/Desktop/skinsense_backend/saved_skinsense_models")
+
             with open("accuracy.txt", "w") as f:
                 print("EPOCH " + str(epoch))
                 f.write("accuracy at epoch " + str(epoch) + " was " + str(correct / len(trainset)))
@@ -89,7 +91,7 @@ class trainer():
                 f.write("the average loss was " +str(losses / len(trainset)))
             
             # save the model state
-            torch.save(self.model.state_dict(), f"saved_models_3/epoch_{epoch}_model.pt")
+            torch.save(self.model.state_dict(), f"/Users/johnmiller/Desktop/skinsense_backend/saved_skinsense_models/epoch_{epoch}_model.pt")
 
             
             
