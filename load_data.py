@@ -1,10 +1,8 @@
 import random
 from PIL import Image
 import os
-import torch
-import torch.nn as nn
-import torchvision
-from model import skin_cnn
+import numpy
+from torch.utils.data import dataloader
 
 
 
@@ -38,13 +36,15 @@ def load_dataset():
             data.append(mPath + malignant_filenames[mInd])
             ground_truth.append(1)
             mInd += 1
+
+    
+
     
     return [data, ground_truth]
 
 
 
 def load_testset():
-    flip = random.random()
     benign_filenames = os.listdir("/Users/johnmiller/Desktop/skin_dataset_resized/test_set/benign")
     malignant_filenames = os.listdir("/Users/johnmiller/Desktop/skin_dataset_resized/test_set/malignant")
     
@@ -73,3 +73,29 @@ def load_testset():
     return [data, ground_truth]
 
 
+def load_valset():
+    benign_filenames = os.listdir("/Users/johnmiller/Desktop/skin_dataset_resized/val_set/benign")
+    malignant_filenames = os.listdir("/Users/johnmiller/Desktop/skin_dataset_resized/val_set/malignant")
+    
+
+    # load in filenames into the data/ground truth array
+    bPath = "/Users/johnmiller/Desktop/skin_dataset_resized/val_set/benign/"
+    mPath = "/Users/johnmiller/Desktop/skin_dataset_resized/val_set/malignant/"
+    bInd = 0
+    mInd = 0
+    data = []
+    ground_truth = []
+
+    # loop over the lists of filenames to make a dataset
+    while bInd < len(benign_filenames) and mInd < len(malignant_filenames):
+        rand = random.random()
+        if rand < 0.56:
+            data.append(bPath + benign_filenames[bInd])
+            ground_truth.append(0)
+            bInd += 1
+        else:
+            data.append(mPath + malignant_filenames[mInd])
+            ground_truth.append(1)
+            mInd += 1
+    
+    return [data, ground_truth]

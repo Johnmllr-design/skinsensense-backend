@@ -9,9 +9,6 @@ class skin_cnn(nn.Module):
     def __init__(self):
         super().__init__()
 
-        # ensure that the image size matched the required model dimensions
-        self.get_input = TF.Compose([TF.Resize((480, 480)), TF.ToTensor()])
-
         # convolutional and pooling layers
         self.initial_conv = nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=1)
         self.second_conv = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1)
@@ -20,23 +17,17 @@ class skin_cnn(nn.Module):
         self.pool_layer = nn.MaxPool2d(kernel_size=2, stride=2)
 
         # fully connected layers
-        self.FC_layer_1 = nn.Linear(in_features= 180000, out_features= 1000, bias=True)
+        self.FC_layer_1 = nn.Linear(in_features= 51200, out_features= 1000, bias=True)
         self.FC_layer_2 = nn.Linear(in_features=1000, out_features= 100, bias=True)
         self.FC_layer_3 = nn.Linear(in_features=100, out_features=1)
         self.flattener = nn.Flatten()
 
     
 
-    def forward(self, input_image_file):
-
-        # turn the image into a tensor
-        tensor:Tensor = self.get_input(input_image_file)
-
-        # Unsqueeze for a batch layer
-        tensor = tensor.unsqueeze(0)
+    def forward(self, input_tensor):
 
         # convolve and pool
-        first_conv = F.relu(self.initial_conv(tensor))
+        first_conv = F.relu(self.initial_conv(input_tensor))
         pooled = self.pool_layer(first_conv)
         second_conv = F.relu(self.second_conv(pooled))
         pooled = self.pool_layer(second_conv)

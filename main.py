@@ -33,20 +33,29 @@ def analyze_image(body):
     image_bytes = base64.b64decode(img)     # string -> bytefile
     image_file = Image.open(io.BytesIO(image_bytes)) # bytefile -> imagefile -> open the image
     image_file = image_file.rotate(270)              # rotate to proper dimensions
-    image_file = Image.open("cancerous2.jpg")      # use for testoing
+    image_file = Image.open("demo_images/cancerous.jpg")      # use for testoing
 
-    print("passing the image file to the model " + str(image_file))
     result = model(image_file)
     print("the inference on the provided user image is : " + str(result[0][0]))
 
     # return a JSON object to the user
     if result[0][0] > 0.5:
-        return {"result" : True}
+        return True
     else:
-        return  {"result" : False}
+        return False
     
+def analyze_image_test():
+    image_file = Image.open("demo_images/benign.jpg")      # use for testoing
 
+    result = model(image_file)
+    print("the inference on the provided user image is : " + str(result[0][0]))
 
+    # return a JSON object to the user
+    if result[0][0] > 0.5:
+        return True
+    else:
+        return False
+    
     
 
 # Add a root endpoint that accepts all different structures of JSON
@@ -58,7 +67,8 @@ async def root_post(request: Request):
     database.init_db()      # initialize the database
     body = await request.json()
     if len(body.keys()) == 1: 
-        return analyze_image(body)
+        print("analyzing image " + str(body["image"][0:10]))
+        return {"result" : analyze_image(body)}
     elif len(body.keys()) == 2:
         return {"result" :  database.login(body["username"], body["password"])}
     else:
@@ -71,3 +81,5 @@ async def root_post(request: Request):
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+# analyze_image_test()

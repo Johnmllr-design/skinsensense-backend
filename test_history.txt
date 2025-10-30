@@ -325,3 +325,7 @@ there were  0.21 percent false negatives
 there were 0.03 percent false positives
 
 the average accuracy across 10 test epochs is 0.773
+
+
+
+the average abnormality size is  76882.19
